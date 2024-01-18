@@ -1,0 +1,20 @@
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: pool-ip
+  namespace: metallb
+spec:
+  # Список IP адресов которые будут назначаться
+  # Можно использовать маску, например 192.168.1.0/24
+  addresses:
+    - 192.168.1.180-192.168.1.185
+---
+apiVersion: metallb.io/v1beta1
+kind: L2Advertisement
+metadata:
+  name: base
+  namespace: metallb
+spec:
+  ipAddressPools:
+    - pool-ip
