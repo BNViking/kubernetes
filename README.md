@@ -58,7 +58,7 @@
 * [Ingress NGINX Controller](./install-ingress-nginx-controller/README.md)
 * [Prometheus Stack](./install-prometheus-stack/README.md)
 * [Loki](./install-loki/README.md)
-* Promtail (В разработке)
+* [Promtail](./install-promtail/README.md)
 * GitLab (В разработке)
 
 
