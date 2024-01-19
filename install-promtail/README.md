@@ -19,12 +19,12 @@ Promtail - это агент, который отправляет содержи
     helm repo add grafana https://grafana.github.io/helm-charts
     ```
 
-2. Обновляем репозитории
+2. Обновляем кеш приложений (charts)
     ```bash
     helm repo update
     ```
 
-3. Создаем файл для конфигурации [./00-promtail-values.yaml](./00-promtail-values.yaml)
+3. Создаем файл [./00-promtail-values.yaml](./00-promtail-values.yaml) с настройками
     ```bash
     helm show values grafana/promtail > ./00-promtail-values.yaml
     ``` 

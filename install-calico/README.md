@@ -13,7 +13,7 @@
     helm repo add projectcalico https://docs.tigera.io/calico/charts
     ```
 
-2. Обновляем репозитории
+2. Обновляем кеш приложений (charts)
     ```bash
     helm repo update
     ```
@@ -23,7 +23,7 @@
     kubectl create namespace tigera-operator
     ``` 
 
-5. Устанавливаем tigera-operator
+4. Устанавливаем 
     ```bash
     helm install calico projectcalico/tigera-operator --namespace tigera-operator
     ```

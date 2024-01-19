@@ -22,12 +22,12 @@ Grafana Loki — это набор компонентов, которые мог
     helm repo add grafana https://grafana.github.io/helm-charts
     ```
 
-2. Обновляем репозитории
+2. Обновляем кеш приложений (charts)
     ```bash
     helm repo update
     ```
 
-3. Создаем файл для конфигурации [./00-loki-values.yaml](./00-loki-values.yaml)
+3. Создаем файл [./00-loki-values.yaml](./00-loki-values.yaml) с настройками
     ```bash
     helm show values grafana/loki > 00-loki-values.yaml
     ``` 

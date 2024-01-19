@@ -16,7 +16,7 @@
    helm repo add jetstack https://charts.jetstack.io
    ```
 
-2. Обновите кеш чартов (charts):.
+2. Обновляем кеш приложений (charts)
    ```bash
    helm repo update
    ```
@@ -26,7 +26,7 @@
    helm search repo jetstack -l
    ```
 
-4. Утановка cert-manager
+4. Устанавливаем
    ```bash
    helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --version v1.13.3 --set installCRDs=true
    ```

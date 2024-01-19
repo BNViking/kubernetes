@@ -22,18 +22,17 @@
     helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
     ```
 
-
-2. Обновляем пакеты
+4. Обновляем кеш приложений (charts)
     ```bash
     helm repo update
     ```
 
-3. Создаем файл настроек
+5. Создаем файл [./00-prometheus-stack-values.yaml](./00-prometheus-stack-values.yaml) c настройками
     ```bash
     helm show values prometheus-community/kube-prometheus-stack > ./00-prometheus-stack-values.yaml
     ```
 
-4. Редактируем файл ./00-prometheus-stack-values.yaml
+6. Редактируем файл [./00-prometheus-stack-values.yaml](./00-prometheus-stack-values.yaml)
     ```yaml
     fullnameOverride: "prometheus" #Избавляемся от длинных стандартных имен
     alertmanager:
@@ -178,7 +177,7 @@
                     selector: {}
     ```
 
-5. Устанавливаем
+7. Устанавливаем
     ```bash
     helm install prometheus prometheus-community/kube-prometheus-stack -f ./00-prometheus-stack-values.yaml --namespace monitoring --create-namespace  
     ```

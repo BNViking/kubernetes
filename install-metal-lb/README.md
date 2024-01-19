@@ -32,12 +32,12 @@ ipvs:
     helm repo add metallb https://metallb.github.io/metallb
     ```
 
-2. Обновляем список пакетов
+2. Обновляем кеш приложений (charts)
     ```bash
     helm repo update
     ```
 
-3. Создаем файл с настройками
+3. Создаем файл [00-metallb-values.yaml](./00-metallb-values.yaml) с настройками
     ```bash
     helm show values metallb/metallb > ./00-metallb-values.yaml
     ```

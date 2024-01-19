@@ -142,30 +142,47 @@
 * [Установка Helm](../install-helm/README.md)
 * [Install CSI driver with Helm 3](https://github.com/kubernetes-csi/csi-driver-nfs/blob/master/charts/README.md)
 * [NFS Subdirectory External Provisioner Helm Chart](https://artifacthub.io/packages/helm/nfs-subdir-external-provisioner/nfs-subdir-external-provisioner)
+* [GitHub](https://github.com/kubernetes-sigs/nfs-subdir-external-provisioner)
 
-1. Устанавливаем драйвер CSI
+---
+
+#### Установка драйвера CSI для NFS
+
+1. Добавляем репозиторий
    ```bash
    helm repo add csi-driver-nfs https://raw.githubusercontent.com/kubernetes-csi/csi-driver-nfs/master/charts
    ```
+   
+2. Обновляем кеш приложений (charts)
    ```bash
    helm repo update
    ```
+
+3. Устанавливаем
    ```bash
    helm install csi-driver-nfs csi-driver-nfs/csi-driver-nfs --namespace kube-system
    ```
-   
-2. Установка автоматического создания разделов
+
+---
+
+#### Настройка автоматического создания томов
+
+1. Добавляем репозиторий
    ```bash
    helm repo add nfs-subdir-external-provisioner https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/
    ```
+
+2. Обновляем кеш приложений (charts)
    ```bash
    helm repo update
    ```
+
+3. Создаем файл [./00-nfs-external-provisioner-value.yaml](./00-nfs-external-provisioner-value.yaml) для настройки 
    ```bash
    helm show values nfs-subdir-external-provisioner --repo https://kubernetes-sigs.github.io/nfs-subdir-external-provisioner/ > ./00-nfs-external-provisioner-value.yaml
    ```
 
-3. Меняем настройки в файле [00-nfs-external-provisioner-value.yaml](./00-nfs-external-provisioner-value.yaml)
+4. Меняем настройки в файле [./00-nfs-external-provisioner-value.yaml](./00-nfs-external-provisioner-value.yaml)
    ```yaml
    nfs:
        server: 192.168.1.15
@@ -178,11 +195,11 @@
        archiveOnDelete: false #Не архивировать раздел (переименовывает папку в архивную)
        accessModes: ReadWriteMany
    ```
-4. Устанавливаем
+5. Устанавливаем
    ```bash
    helm install nfs-subdir-external-provisioner nfs-subdir-external-provisioner/nfs-subdir-external-provisioner -f ./00-nfs-external-provisioner-value.yaml --create-namespace --namespace nfs-external-provisioner
    ```
-5. Проверяем созданный класс
+6. Проверяем созданный класс
    ```bash
    kubectl get storageclasses
    ```
@@ -191,7 +208,7 @@
    nfs-bnvkube-client   cluster.local/nfs-subdir-external-provisioner   Delete          Immediate           true                   4m7s
    ```
 
-6. Создадим тестовый раздел **pvctest** pvc, пример файла [01-nfs-volume-claime.yaml](./01-nfs-volume-claime.yaml)
+7. Создадим тестовый раздел **pvctest** pvc, пример файла [01-nfs-volume-claime.yaml](./01-nfs-volume-claime.yaml)
    ```yaml
    spec:
        storageClassName: nfs-bnvkube-client
@@ -200,7 +217,7 @@
    kubectl apply -f ./01-nfs-volume-claime.yaml
    ```
 
-7. Проверяем
+8. Проверяем созданный **pvc**
    ```bash
    kubectl get pvc -A
    ```
@@ -208,12 +225,21 @@
    NAMESPACE   NAME      STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS         VOLUMEATTRIBUTESCLASS   AGE
    default     pvctest   Bound    pvc-e0b6aa87-9168-4e2d-9e0b-eb1018cea256   100Mi      RWX            nfs-bnvkube-client   <unset>                 8s
    ```
-   *STATUS = Bound - Значит все ОК*
+   ***STATUS = Bound** - Значит все ОК*
    
-8. Удаляем тестовый раздел **pvctest**
+9. Удаляем тестовый раздел **pvctest**
    ```bash
    kubectl delete -f ./01-nfs-volume-claime.yaml
    ```
+
+---
+
+Для того что бы автоматически создавались **pvc** необходимо указать созданный класс `nfs-bnvkube-client` в настройках манифеста
+```yaml
+spec:
+  storageClassName: nfs-bnvkube-client
+```
+
 
 ---
 

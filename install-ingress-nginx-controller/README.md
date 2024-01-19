@@ -12,7 +12,7 @@
     helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
     ```
 
-2. Обновляем список приложений
+2. Обновляем кеш приложений (charts)
     ```bash
     helm repo update
     ```
@@ -22,7 +22,7 @@
     helm search repo | grep ingress
     ```
 
-4. Создаем файл с настройками
+4. Создаем файл [./00-ingress-nginx-values.yaml](./00-ingress-nginx-values.yaml) с настройками
     ```bash
     helm show values ingress-nginx/ingress-nginx > ./00-ingress-nginx-values.yaml
     ```
