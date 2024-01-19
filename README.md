@@ -45,7 +45,7 @@
 * [Настройка MetalLB](./10-metal-lb/README.md)
 * [Установка Ingress Controller (nginx)](./install-ingress-nginx-controller/README.md)
 * [Мониторинг ресурсов](./11-monitoring/README.md)
-* Логирование (В разработке)
+* [Логирование](./12-logi/README.md)
 
 ---
 
@@ -57,7 +57,7 @@
 * [MetalLB](./install-metal-lb/README.md)
 * [Ingress NGINX Controller](./install-ingress-nginx-controller/README.md)
 * [Prometheus Stack](./install-prometheus-stack/README.md)
-* Loki (В разработке)
+* [Loki](./install-loki/README.md)
 * Promtail (В разработке)
 * GitLab (В разработке)
 
@@ -67,3 +67,4 @@
 ### Дополнительные ссылки
 * [API Kubernetes 1.29](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/) 
 * [Шпаргалка по kubectl](https://kubernetes.io/ru/docs/reference/kubectl/cheatsheet/)
+* [Решение проблем с Loki и Promtail (на китайском)](https://www.jianshu.com/p/6b24340c2cf1)

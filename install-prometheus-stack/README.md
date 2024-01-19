@@ -229,9 +229,9 @@ pvc-dd9ec905-13d1-4422-9f32-5c7c3461aa4a   5Gi        RWO            Delete     
 
 Входим на сервисы и проверяем работоспособность
 
-* [Prometheus](https://prometheus.bnvkube.lan)
-* [Alert Manager](https://alertmanager.bnvkube.lan)
-* [Grafana](https://grafana.bnvkube.lan) (username: `bnviking` password: `pwdpwdpwd`)
+* [prometheus.bnvkube.lan](https://prometheus.bnvkube.lan)
+* [alertmanager.bnvkube.lan](https://alertmanager.bnvkube.lan)
+* [grafana.bnvkube.lan](https://grafana.bnvkube.lan) (username: `bnviking` password: `pwdpwdpwd`)
 
 ---
 
