@@ -34,18 +34,18 @@
    ```
 
 6. Редактируем настройки [./00-postgresql-values.yaml](./00-postgresql-values.yaml)
-```yaml
-global:
-  storageClass: "nfs-bnvkube-client"
-  postgresql:
-    auth:
-      database: "bnvdb"
-    existingSecret: "postgresql-auth"
-    secretKeys:
-      adminPasswordKey: "AdminPwd"
-      userPasswordKey: "UserPwd"
-      replicationPasswordKey: "ReplicationPwd"
-```
+   ```yaml
+   global:
+     storageClass: "nfs-bnvkube-client"
+     postgresql:
+       auth:
+         database: "bnvdb"
+       existingSecret: "postgresql-auth"
+       secretKeys:
+         adminPasswordKey: "AdminPwd"
+         userPasswordKey: "UserPwd"
+         replicationPasswordKey: "ReplicationPwd"
+   ```
 
 7. Устанавливаем
    ```bash
@@ -60,18 +60,18 @@ global:
    ```
 
 Смотрим какие остались тома
-```bash
-kubectl get pvc -n postgresql
-```
-```
-NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS         VOLUMEATTRIBUTESCLASS   AGE
-data-postgresql-0   Bound    pvc-78f17bc2-d94f-4875-af41-95c60d722d15   8Gi        RWO            nfs-bnvkube-client   <unset>                 9m22s
-```
+   ```bash
+   kubectl get pvc -n postgresql
+   ```
+   ```
+   NAME                STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS         VOLUMEATTRIBUTESCLASS   AGE
+   data-postgresql-0   Bound    pvc-78f17bc2-d94f-4875-af41-95c60d722d15   8Gi        RWO            nfs-bnvkube-client   <unset>                 9m22s
+   ```
 
 Удаляем том
-```bash
-kubectl delete pvc -n postgresql data-postgresql-0
-```
+   ```bash
+   kubectl delete pvc -n postgresql data-postgresql-0
+   ```
 
 ---
 
