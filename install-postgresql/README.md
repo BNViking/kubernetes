@@ -73,9 +73,6 @@ data-postgresql-0   Bound    pvc-78f17bc2-d94f-4875-af41-95c60d722d15   8Gi     
 kubectl delete pvc -n postgresql data-postgresql-0
 ```
 
-
-
-
 ---
 
 [[Перейти в начало](../README.md)]

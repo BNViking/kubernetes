@@ -48,6 +48,20 @@
    helm uninstall redis -n redis
    ```
 
+Смотрим какие остались тома
+   ```bash
+   kubectl get pvc -n redis
+   ```
+   ```
+   NAME                        STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS         VOLUMEATTRIBUTESCLASS   AGE
+   redis-data-redis-master-0   Bound    pvc-a061f894-5bc0-40d6-9b8b-e086f2e7d593   8Gi        RWO            nfs-bnvkube-client   <unset>                 21h
+   ```
+
+Удаляем том
+   ```bash
+   kubectl delete pvc -n redis redis-data-redis-master-0
+   ```
+
 ---
 
 [[Перейти в начало](../README.md)]
