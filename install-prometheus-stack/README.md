@@ -235,10 +235,24 @@ pvc-dd9ec905-13d1-4422-9f32-5c7c3461aa4a   5Gi        RWO            Delete     
 ---
 
 ### Удаление
-```bash
-helm uninstall prometheus -n monitoring
-```
+   ```bash
+   helm uninstall prometheus -n monitoring
+   ```
 
+Смотрим какие остались тома
+   ```bash
+   kubectl get pvc -n monitoring
+   ```
+   ```
+   NAME                                                                             STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS         VOLUMEATTRIBUTESCLASS   AGE
+   alertmanager-prometheus-alertmanager-db-alertmanager-prometheus-alertmanager-0   Bound    pvc-dd9ec905-13d1-4422-9f32-5c7c3461aa4a   5Gi        RWO            nfs-bnvkube-client   <unset>                 2d21h
+   prometheus-prometheus-prometheus-db-prometheus-prometheus-prometheus-0           Bound    pvc-b876bad4-021e-4c50-9d3e-966bb7c34958   5Gi        RWO            nfs-bnvkube-client   <unset>                 2d21h
+   ```
+
+Удаляем том
+   ```bash
+   kubectl delete pvc -n monitoring alertmanager-prometheus-alertmanager-db-alertmanager-prometheus-alertmanager-0 prometheus-prometheus-prometheus-db-prometheus-prometheus-prometheus-0
+   ```
 ---
 
 [[Перейти в начало](../README.md)]
