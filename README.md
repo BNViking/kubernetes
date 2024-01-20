@@ -59,6 +59,8 @@
 * [Prometheus Stack](./install-prometheus-stack/README.md)
 * [Loki](./install-loki/README.md)
 * [Promtail](./install-promtail/README.md)
+* [Redis](./install-redis/README.md)
+* [PostgreSql](./install-postgresql/README.md)
 * GitLab (В разработке)
 
 
