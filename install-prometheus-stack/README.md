@@ -253,6 +253,23 @@ pvc-dd9ec905-13d1-4422-9f32-5c7c3461aa4a   5Gi        RWO            Delete     
    ```bash
    kubectl delete pvc -n monitoring alertmanager-prometheus-alertmanager-db-alertmanager-prometheus-alertmanager-0 prometheus-prometheus-prometheus-db-prometheus-prometheus-prometheus-0
    ```
+
+Посмотреть и удалить оставшиеся секреты
+   ```bash
+   kubectl get secrets -n monitoring
+   ```
+   ```
+   NAME                   TYPE                DATA   AGE
+   alert-manager-tls      kubernetes.io/tls   3      2m1s
+   grafana-tls            kubernetes.io/tls   3      2m1s
+   grafana-user-admin     Opaque              2      2m50s
+   prometheus-admission   Opaque              3      2m7s
+   prometheus-tls         kubernetes.io/tls   3      2m1s
+   ```
+   ```bash
+   kubectl delete secrets -n monitoring alert-manager-tls grafana-tls grafana-user-admin prometheus-admission prometheus-tls
+   ```
+
 ---
 
 [[Перейти в начало](../README.md)]
