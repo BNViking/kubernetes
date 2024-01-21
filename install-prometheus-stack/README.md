@@ -185,44 +185,44 @@
 ---
 
 Смотрим что бы все поднялось
-```bash
-kubectl --namespace monitoring get pods -o wide
-```
-```
-NAME                                                     READY   STATUS    RESTARTS   AGE   IP             NODE             NOMINATED NODE   READINESS GATES
-alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0          50s   10.20.37.206   worker-02.lan    <none>           <none>
-prometheus-grafana-77c588fccf-zs8np                      3/3     Running   0          65s   10.20.24.146   worker-03.lan    <none>           <none>
-prometheus-kube-prometheus-operator-86cbd94f79-xb7fz     1/1     Running   0          65s   10.20.24.147   worker-03.lan    <none>           <none>
-prometheus-kube-state-metrics-6db866c85b-szzkj           1/1     Running   0          65s   10.20.24.145   worker-03.lan    <none>           <none>
-prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0          50s   10.20.37.207   worker-02.lan    <none>           <none>
-prometheus-prometheus-node-exporter-6bsns                1/1     Running   0          65s   192.168.1.13   control-02.lan   <none>           <none>
-prometheus-prometheus-node-exporter-7sfjp                1/1     Running   0          65s   192.168.1.17   worker-03.lan    <none>           <none>
-prometheus-prometheus-node-exporter-dc9k9                1/1     Running   0          65s   192.168.1.14   control-03.lan   <none>           <none>
-prometheus-prometheus-node-exporter-h9zbk                1/1     Running   0          65s   192.168.1.15   worker-01.lan    <none>           <none>
-prometheus-prometheus-node-exporter-hsghv                1/1     Running   0          65s   192.168.1.16   worker-02.lan    <none>           <none>
-prometheus-prometheus-node-exporter-l295k                1/1     Running   0          65s   192.168.1.12   control-01.lan   <none>           <none>
-```
+   ```bash
+   kubectl --namespace monitoring get pods -o wide
+   ```
+   ```
+   NAME                                                     READY   STATUS    RESTARTS   AGE   IP             NODE             NOMINATED NODE   READINESS GATES
+   alertmanager-prometheus-kube-prometheus-alertmanager-0   2/2     Running   0          50s   10.20.37.206   worker-02.lan    <none>           <none>
+   prometheus-grafana-77c588fccf-zs8np                      3/3     Running   0          65s   10.20.24.146   worker-03.lan    <none>           <none>
+   prometheus-kube-prometheus-operator-86cbd94f79-xb7fz     1/1     Running   0          65s   10.20.24.147   worker-03.lan    <none>           <none>
+   prometheus-kube-state-metrics-6db866c85b-szzkj           1/1     Running   0          65s   10.20.24.145   worker-03.lan    <none>           <none>
+   prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0          50s   10.20.37.207   worker-02.lan    <none>           <none>
+   prometheus-prometheus-node-exporter-6bsns                1/1     Running   0          65s   192.168.1.13   control-02.lan   <none>           <none>
+   prometheus-prometheus-node-exporter-7sfjp                1/1     Running   0          65s   192.168.1.17   worker-03.lan    <none>           <none>
+   prometheus-prometheus-node-exporter-dc9k9                1/1     Running   0          65s   192.168.1.14   control-03.lan   <none>           <none>
+   prometheus-prometheus-node-exporter-h9zbk                1/1     Running   0          65s   192.168.1.15   worker-01.lan    <none>           <none>
+   prometheus-prometheus-node-exporter-hsghv                1/1     Running   0          65s   192.168.1.16   worker-02.lan    <none>           <none>
+   prometheus-prometheus-node-exporter-l295k                1/1     Running   0          65s   192.168.1.12   control-01.lan   <none>           <none>
+   ```
 
 Созданные сертификаты
-```bash
-kubectl get certificate -n monitoring
-```
-```
-NAME                READY   SECRET              AGE
-alert-manager-tls   True    alert-manager-tls   102s
-grafana-tls         True    grafana-tls         102s
-prometheus-tls      True    prometheus-tls      102s
-```
+   ```bash
+   kubectl get certificate -n monitoring
+   ```
+   ```
+   NAME                READY   SECRET              AGE
+   alert-manager-tls   True    alert-manager-tls   102s
+   grafana-tls         True    grafana-tls         102s
+   prometheus-tls      True    prometheus-tls      102s
+   ```
 
 Созданные разделы 
-```bash
-kubectl get pv -n monitoring
-```
-```
-NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                                                       STORAGECLASS         VOLUMEATTRIBUTESCLASS   REASON   AGE
-pvc-b876bad4-021e-4c50-9d3e-966bb7c34958   5Gi        RWO            Delete           Bound    monitoring/prometheus-prometheus-prometheus-db-prometheus-prometheus-prometheus-0           nfs-bnvkube-client   <unset>                          3m12s
-pvc-dd9ec905-13d1-4422-9f32-5c7c3461aa4a   5Gi        RWO            Delete           Bound    monitoring/alertmanager-prometheus-alertmanager-db-alertmanager-prometheus-alertmanager-0   nfs-bnvkube-client   <unset>                          3m13s
-```
+   ```bash
+   kubectl get pv -n monitoring
+   ```
+   ```
+   NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                                                                                       STORAGECLASS         VOLUMEATTRIBUTESCLASS   REASON   AGE
+   pvc-b876bad4-021e-4c50-9d3e-966bb7c34958   5Gi        RWO            Delete           Bound    monitoring/prometheus-prometheus-prometheus-db-prometheus-prometheus-prometheus-0           nfs-bnvkube-client   <unset>                          3m12s
+   pvc-dd9ec905-13d1-4422-9f32-5c7c3461aa4a   5Gi        RWO            Delete           Bound    monitoring/alertmanager-prometheus-alertmanager-db-alertmanager-prometheus-alertmanager-0   nfs-bnvkube-client   <unset>                          3m13s
+   ```
 
 ---
 
