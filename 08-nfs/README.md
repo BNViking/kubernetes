@@ -111,7 +111,7 @@
 
 2. Редактируем файл /etc/exports, добавляем запись для нашего раздела (Доступ для сети 192.168.1.0/24)
    ```bash
-   /var/nfs/bnvkube     192.168.1.0/24(rw,wdelay,insecure,no_root_squash,no_subtree_check,sec=sys,rw,insecure,no_root_squash,no_all_squash)
+   /var/nfs/bnvkube     192.168.1.0/24(rw,sync,no_subtree_check,insecure,no_root_squash)
    ```
 
 3. Применяем настройки nfs
@@ -125,7 +125,7 @@
    ```
    ```
    /var/nfs/bnvkube
-                192.168.1.0/24(sync,wdelay,hide,no_subtree_check,sec=sys,rw,insecure,no_root_squash,no_all_squash)
+       192.168.1.0/24(sync,wdelay,hide,no_subtree_check,sec=sys,rw,insecure,no_root_squash,no_all_squash)
    ```
 
 ---
