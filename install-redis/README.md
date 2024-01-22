@@ -28,12 +28,23 @@
    ```yaml
    global:
       storageClass: "nfs-bnvkube-client"
+   master:
+      containerSecurityContext:
+         runAsUser: 1001
+         runAsGroup: 1001
+   replica:
+      containerSecurityContext:
+         runAsUser: 1001
+         runAsGroup: 1001
    architecture: standalone
    auth:
       enabled: true
       password: "redispassword"
    metrics:
       enabled: true
+      containerSecurityContext:
+         runAsUser: 1001
+         runAsGroup: 1001
    ```
 
 5. Устанавливаем

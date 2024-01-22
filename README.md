@@ -61,12 +61,19 @@
 * [Promtail](./install-promtail/README.md)
 * [Redis](./install-redis/README.md)
 * [PostgreSql](./install-postgresql/README.md)
-* GitLab (В разработке)
+* [PgAdmin 4](./install-pgAdmin4/README.md)
+* [Minio](./install-minio/README.md)
+* [GitLab](./install-gitlab/README.md)
 
 
 ---
 
 ### Дополнительные ссылки
-* [API Kubernetes 1.29](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/) 
+* [API Kubernetes 1.29](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/)
+* [OpenLens](https://github.com/MuhammedKalkan/OpenLens/releases?ysclid=lrnfe9guk2158344056)
 * [Шпаргалка по kubectl](https://kubernetes.io/ru/docs/reference/kubectl/cheatsheet/)
 * [Решение проблем с Loki и Promtail (на китайском)](https://www.jianshu.com/p/6b24340c2cf1)
+* [Debug Running Pods](https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/)
+* [Debug Services](https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/)
+* [GitLab Создание секретов](https://docs.gitlab.com/charts/installation/secrets#initial-root-password)
+* [Scale PHP-FPM](https://kamrul.dev/scale-php-fpm-on-kubernetes-with-keda/)

@@ -39,12 +39,15 @@
      storageClass: "nfs-bnvkube-client"
      postgresql:
        auth:
+         username: "bnviking"
          database: "bnvdb"
        existingSecret: "postgresql-auth"
        secretKeys:
          adminPasswordKey: "AdminPwd"
          userPasswordKey: "UserPwd"
          replicationPasswordKey: "ReplicationPwd"
+   metrics:
+     enabled: true
    ```
 
 7. Устанавливаем
