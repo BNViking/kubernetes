@@ -63,7 +63,7 @@ _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4]
 
 10. Создаем файл [./00-gitlab-values.yaml](./00-gitlab-values.yaml) с настройками
     ```bash
-    helm show values gitlab/gitlab > ./01-gitlab-values.yaml
+    helm show values gitlab/gitlab > ./00-gitlab-values.yaml
     ```
 
 11. Редактируем настройки [./00-gitlab-values.yaml](./00-gitlab-values.yaml)
