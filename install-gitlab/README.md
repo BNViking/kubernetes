@@ -19,19 +19,7 @@
 * [Prometheus Stack](../install-prometheus-stack/README.md)
 * [Redis](../install-redis/README.md)
 * [PostgreSql](../install-postgresql/README.md)
-* [Minio](../install-minio/README.md)
 
-_В **Minio** создать ключ для **GitLab**_\
-_После создания **Access Key** в **minio**, сохраните файл **credentials.json**_
-```json
-{
-   "url":"https://minio.bnvkube.lan/api/v1/service-account-credentials",
-   "accessKey":"8LJljPcf89RAkIg3IpFk",
-   "secretKey":"yfm55YsFJxJwMNWfQMExcnL5SNfl8scBeiYXQKYq",
-   "api":"s3v4",
-   "path":"auto"
-}
-```
 _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4](../install-pgAdmin4/README.md))
 
 ---
