@@ -120,17 +120,17 @@ _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4]
         ingress:
           tls:
             enabled: true
-            secretName: gitlab-minio-tls
+            secretName: gitlab-minio-tls #не работает, надо после установки поправить
         persistence:
-          storageClass: nfs-bnvkube-client
-          size: 100Gi
+          storageClass: nfs-bnvkube-client #не работает, надо после установки поправить
+          size: 20Gi #не работает, надо после установки поправить
         credentials: {}
       kas:
         enabled: false
       registry:
         tls:
           enabled: true
-          secretName: gitlab-registry-tls
+          secretName: gitlab-registry-tls #не работает, надо после установки поправить
         enabled: true
       email:
         from: "admin@bnvkube.lan"
@@ -165,6 +165,37 @@ _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4]
     ```bash
     helm upgrade --install gitlab gitlab/gitlab -f ./00-gitlab-values.yaml --namespace gitlab --create-namespace
     ```
+---
+
+#### Исправление конфигурации 
+
+_Через настройки не применились значения, поэтому правим после установки_
+
+1. **PersistentVolumeClaim gitlab-minio**, добавить **storageClassName** и изменить размер тома
+   ```yaml
+    spec:
+      storageClassName: nfs-bnvkube-client
+      resources:
+        requests:
+          storage: 20Gi
+    ```
+
+2. **Ingress gitlab-minio**, заменить **secretName**
+    ```yaml
+      tls:
+        - hosts:
+            - minio.bnvkube.lan
+          secretName: gitlab-minio-tls
+    ```
+
+3. **Ingress gitlab-registry**, заменить **secretName**
+    ```yaml
+      tls:
+        - hosts:
+            - registry.bnvkube.lan
+          secretName: gitlab-registry-tls
+    ```
+
 
 ---
 
