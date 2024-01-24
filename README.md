@@ -43,7 +43,7 @@
 * [Настройка NFS](./doc/08-nfs/README.md)
 * [Настройка Cert Manager](./doc/09-cert-manager/README.md)
 * [Настройка MetalLB](./doc/10-metal-lb/README.md)
-* [Установка Ingress Controller (nginx)](./doc/doc/install-ingress-nginx-controller/README.md)
+* [Установка Ingress Controller (nginx)](./doc/install-ingress-nginx-controller/README.md)
 * [Мониторинг ресурсов](./doc/11-monitoring/README.md)
 * [Логирование](./doc/12-logi/README.md)
 
@@ -51,20 +51,20 @@
 
 ### Установка приложений
 
-* [Helm](./doc/doc/install-helm/README.md)
+* [Helm](./doc/install-helm/README.md)
 * [Calico](./doc/06-calico/README.md)
-* [Cert Manager](./doc/doc/install-cert-namager/README.md)
-* [MetalLB](./doc/doc/install-metal-lb/README.md)
-* [Ingress NGINX Controller](./doc/doc/install-ingress-nginx-controller/README.md)
-* [Prometheus Stack](./doc/doc/install-prometheus-stack/README.md)
-* [Loki](./doc/doc/install-loki/README.md)
-* [Promtail](./doc/doc/install-promtail/README.md)
-* [Redis](./doc/doc/install-redis/README.md)
-* [PostgreSql](./doc/doc/install-postgresql/README.md)
-* [PgAdmin 4](./doc/doc/install-pgAdmin4/README.md)
-* [Minio](./doc/doc/install-minio/README.md)
-* [GitLab](./doc/doc/install-gitlab/README.md)
-* [GitLab Runner](./doc/doc/install-gitlab-runner/README.md)
+* [Cert Manager](./doc/install-cert-namager/README.md)
+* [MetalLB](./doc/install-metal-lb/README.md)
+* [Ingress NGINX Controller](./doc/install-ingress-nginx-controller/README.md)
+* [Prometheus Stack](./doc/install-prometheus-stack/README.md)
+* [Loki](./doc/install-loki/README.md)
+* [Promtail](./doc/install-promtail/README.md)
+* [Redis](./doc/install-redis/README.md)
+* [PostgreSql](./doc/install-postgresql/README.md)
+* [PgAdmin 4](./doc/install-pgAdmin4/README.md)
+* [Minio](./doc/install-minio/README.md)
+* [GitLab](./doc/install-gitlab/README.md)
+* [GitLab Runner](./doc/install-gitlab-runner/README.md)
 
 ---
 
