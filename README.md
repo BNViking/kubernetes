@@ -65,6 +65,7 @@
 * [Minio](./doc/install-minio/README.md)
 * [GitLab](./doc/install-gitlab/README.md)
 * [GitLab Runner](./doc/install-gitlab-runner/README.md)
+* [GitLab Shell (Настройка ssh)](./doc/install-gitlab-shell/README.md)
 
 ---
 
