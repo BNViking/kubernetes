@@ -64,13 +64,14 @@
 * [PgAdmin 4](./install-pgAdmin4/README.md)
 * [Minio](./install-minio/README.md)
 * [GitLab](./install-gitlab/README.md)
-
+* [GitLab Runner](./install-gitlab-runner/README.md)
 
 ---
 
 ### Дополнительные ссылки
 * [API Kubernetes 1.29](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.29/)
 * [OpenLens](https://github.com/MuhammedKalkan/OpenLens/releases?ysclid=lrnfe9guk2158344056)
+* [kubectl справочник](https://kubernetes.io/docs/reference/kubectl/generated/)
 * [Шпаргалка по kubectl](https://kubernetes.io/ru/docs/reference/kubectl/cheatsheet/)
 * [Решение проблем с Loki и Promtail (на китайском)](https://www.jianshu.com/p/6b24340c2cf1)
 * [Debug Running Pods](https://kubernetes.io/docs/tasks/debug/debug-application/debug-running-pod/)
