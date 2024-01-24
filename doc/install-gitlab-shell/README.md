@@ -21,17 +21,17 @@
 ---
 
 После установки **GitLab** будет добавлен сервис **gitlab-gitlab-shell**, но так как нет проброса портов, 
-то он работать не будет, поэтому надо настроить **ingress nginx controller**\
+то он работать не будет, поэтому надо настроить **ingress nginx controller**
 
-Перед настройкой добавьте **ssh** ключ пользователю в GitLab\
-_Логин в настройках хита должен совпадать с логином пользователя_
-```bash
-cat ~\.gitconfig
-```
+Перед настройкой добавьте **ssh** ключ пользователю в **GitLab**\
+_**Логин** в настройках **git** должен совпадать с логином пользователя в **GitLab**_
+   ```bash
+   cat ~\.gitconfig
+   ```
 
 ### Пошаговая инструкция
 
-1. Изменяем конфигурацию ConfigMap:ingress-nginx-controller
+1. Изменяем конфигурацию **ConfigMap:ingress-nginx-controller**
    ```yaml
    data:
      annotation-value-word-blocklist: "load_module,lua_package,_by_lua,location,root,proxy_pass,serviceaccount,{,},',\""
@@ -48,7 +48,7 @@ cat ~\.gitconfig
      upstream-keepalive-timeout: "5"
      use-http2: "true"
    ```
-2. Изменяем конфигурацию Deployment:ingress-nginx-controller
+2. Изменяем конфигурацию **Deployment:ingress-nginx-controller**
    ```yaml
    spec:
      containers:
@@ -63,7 +63,7 @@ cat ~\.gitconfig
            protocol: TCP
    ```
 
-3. Изменяем конфигурацию Service:ingress-nginx-controller
+3. Изменяем конфигурацию **Service:ingress-nginx-controller**
    ```yaml
    spec:
      ports:
@@ -81,7 +81,6 @@ cat ~\.gitconfig
 ssh git@gitlab.bnvkube.lan
 ```
 ```
-PTY allocation request failed on channel 0
 Welcome to GitLab, @bnviking!
 Connection to gitlab.bnvkube.lan closed.
 ```
