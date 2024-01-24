@@ -15,7 +15,7 @@
 * Система мониторинга - [Prometheus Stack](https://artifacthub.io/packages/helm/prometheus-community/kube-prometheus-stack)
 * Система логирования - [Loki](https://grafana.com/docs/loki/latest/) + [Promtail](https://grafana.com/docs/loki/latest/send-data/promtail/)
 
-![cluster.png](./img/cluster.png)
+![cluster.png](./doc/img/cluster.png)
 
 ### Список узлов:
 
@@ -32,39 +32,39 @@
 
 ### Развертывание и настройка [kubernetes (v1.29.0)](https://kubernetes.io/blog/2023/12/13/kubernetes-v1-29-release/)
 
-* [Подготовка узла](./00-preparing-machine/README.md)
-* [Создание виртуальных машин](./01-create-vm-machine/README.md)
-* [Настройка haProxy в роле балансировщика](./02-haProxy/README.md)
-* [Создание первого узла Control Plane (kubeadm)](./03-first-control-plane/README.md)
-* [Добавление узлов в Kubernetes (kubeadm)](./04-add-node/README.md)
-* [Настройка Node Local Dns](./05-node-local-dns/README.md)
-* [Установка CNI](./06-calico/README.md)
-* [Проверка DNS](./07-check-dns/README.md)
-* [Настройка NFS](./08-nfs/README.md)
-* [Настройка Cert Manager](./09-cert-manager/README.md)
-* [Настройка MetalLB](./10-metal-lb/README.md)
-* [Установка Ingress Controller (nginx)](./install-ingress-nginx-controller/README.md)
-* [Мониторинг ресурсов](./11-monitoring/README.md)
-* [Логирование](./12-logi/README.md)
+* [Подготовка узла](./doc/00-preparing-machine/README.md)
+* [Создание виртуальных машин](./doc/01-create-vm-machine/README.md)
+* [Настройка haProxy в роле балансировщика](./doc/02-haProxy/README.md)
+* [Создание первого узла Control Plane (kubeadm)](./doc/03-first-control-plane/README.md)
+* [Добавление узлов в Kubernetes (kubeadm)](./doc/04-add-node/README.md)
+* [Настройка Node Local Dns](./doc/05-node-local-dns/README.md)
+* [Установка CNI](./doc/06-calico/README.md)
+* [Проверка DNS](./doc/07-check-dns/README.md)
+* [Настройка NFS](./doc/08-nfs/README.md)
+* [Настройка Cert Manager](./doc/09-cert-manager/README.md)
+* [Настройка MetalLB](./doc/10-metal-lb/README.md)
+* [Установка Ingress Controller (nginx)](./doc/doc/install-ingress-nginx-controller/README.md)
+* [Мониторинг ресурсов](./doc/11-monitoring/README.md)
+* [Логирование](./doc/12-logi/README.md)
 
 ---
 
 ### Установка приложений
 
-* [Helm](./install-helm/README.md)
-* [Calico](./06-calico/README.md)
-* [Cert Manager](./install-cert-namager/README.md)
-* [MetalLB](./install-metal-lb/README.md)
-* [Ingress NGINX Controller](./install-ingress-nginx-controller/README.md)
-* [Prometheus Stack](./install-prometheus-stack/README.md)
-* [Loki](./install-loki/README.md)
-* [Promtail](./install-promtail/README.md)
-* [Redis](./install-redis/README.md)
-* [PostgreSql](./install-postgresql/README.md)
-* [PgAdmin 4](./install-pgAdmin4/README.md)
-* [Minio](./install-minio/README.md)
-* [GitLab](./install-gitlab/README.md)
-* [GitLab Runner](./install-gitlab-runner/README.md)
+* [Helm](./doc/doc/install-helm/README.md)
+* [Calico](./doc/06-calico/README.md)
+* [Cert Manager](./doc/doc/install-cert-namager/README.md)
+* [MetalLB](./doc/doc/install-metal-lb/README.md)
+* [Ingress NGINX Controller](./doc/doc/install-ingress-nginx-controller/README.md)
+* [Prometheus Stack](./doc/doc/install-prometheus-stack/README.md)
+* [Loki](./doc/doc/install-loki/README.md)
+* [Promtail](./doc/doc/install-promtail/README.md)
+* [Redis](./doc/doc/install-redis/README.md)
+* [PostgreSql](./doc/doc/install-postgresql/README.md)
+* [PgAdmin 4](./doc/doc/install-pgAdmin4/README.md)
+* [Minio](./doc/doc/install-minio/README.md)
+* [GitLab](./doc/doc/install-gitlab/README.md)
+* [GitLab Runner](./doc/doc/install-gitlab-runner/README.md)
 
 ---
 
