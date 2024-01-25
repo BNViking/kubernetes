@@ -42,7 +42,7 @@
    ```
    gitlab-runner register  
      --url https://gitlab.bnvkube.lan  
-     --token glrt-gH3VgrVhYz9y3MRboDXw
+     --token glrt-mQ4Qp6NKmP5h_qUzieo2
    ```
    
 5. Создаем секрет
@@ -56,15 +56,14 @@
    type: Opaque
    stringData:
      # Токен при создании ранера
-     runner-token: "glrt-gH3VgrVhYz9y3MRboDXw" 
+     runner-token: "glrt-mQ4Qp6NKmP5h_qUzieo2" 
      # нужно оставить пустой строкой из соображений совместимости
      runner-registration-token: ""
    
      # Авторизация в minio, хранится в секрете gitlab-minio-secret
-     accesskey: "2GzNcrAlcXJwH1iFIyAXeP8YGqTKKLiHyxejvaexjB6R3RZ2QlsmZS91XdTUN9QD"
-     secretkey: "BYklAqxkYXx4IhdbjUHZENMnZfE5DruhUtJKtcLyPk7SstFUvTs4AwjBqI78pFgq"
+     accesskey: "2FTWW7dsdU9VSadZmwy3TcORHWzqLszMvdZbGGxcfK7J5RfX7L1gGaxWR5aE66Cd"
+     secretkey: "odue2rujamQPjZNAH4qkwWdMulHORPmCDflkqacsYWhZO4iMVDJYquRWHfpMosW8"
    EOF
-   
    ```
 
 6. Создаем файл [./00-gitlab-runner-values.yaml](./00-gitlab-runner-values.yaml) с настройками
@@ -95,6 +94,7 @@
    runners:
      config: |
        [[runners]]
+         name = "web-group"
          output_limit = 10000
          [runners.kubernetes]
            image = "ubuntu:22.04"
