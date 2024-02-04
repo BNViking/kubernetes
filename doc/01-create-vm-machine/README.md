@@ -28,26 +28,25 @@
 
 1. Меняем имя хоста, на привязанный в DNS
     ```bash
-    echo "control-01.lan" | sudo tee /etc/hostname;
+    echo "control-01.lan" | sudo tee /etc/hostname
     ```
 
 2. Генерируем ssh ключ
     ```bash
-    ssh-keygen;
+    ssh-keygen
     ```
 3. Если ключ ssh не скопирован, то копируем его
    ```bash
-   nano ~/.ssh/authorized_keys;
+   nano ~/.ssh/authorized_keys
    ```
 4. Автодополнение для команд kubectl в bash
-   ```
-   source <(kubectl completion bash);
-   echo "source <(kubectl completion bash)" >> ~/.bashrc;
+   ```bash
+   source <(kubectl completion bash) && echo "source <(kubectl completion bash)" >> ~/.bashrc
    ```
 
 5. Перезагружаем
     ```bash
-    sudo reboot;
+    sudo reboot
     ```
 
 ---

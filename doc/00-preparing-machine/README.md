@@ -11,25 +11,22 @@
 
 1. Делаем обновление, устанавливаем openssh-server
    ```bash
-   sudo apt update;
-   sudo apt full-upgrade -y;
-   sudo apt install openssh-server -y;
+   sudo apt update && sudo apt full-upgrade -y && sudo apt install openssh-server -y
    ```
    
 2. Отключаем swap
    ```bash
-   sudo swapoff -a;
-   sudo rm -rf /swap.img;
+   sudo swapoff -a && sudo rm -rf /swap.img
    ```
    
 3. Отключаем монтирование раздела для swap
    ```bash
-   sudo sed -i '/swap.img/ s/^/#/' /etc/fstab;
+   sudo sed -i '/swap.img/ s/^/#/' /etc/fstab
    ```
    
 4. Отключаем пользователю ввод пароля для sudo (необязательно)
    ```bash
-   echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER;
+   echo "$USER ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/$USER
    ```
    
 5. Добавляем репозиторий kubernetes
@@ -40,13 +37,12 @@
    
 6. Устанавливаем необходимые пакеты
    ```bash
-   sudo apt-get update;
-   sudo apt install -y kubeadm kubelet kubectl kubernetes-cni containerd apt-transport-https ca-certificates curl gnupg nfs-common ipvsadm;
+   sudo apt-get update && sudo apt install -y kubeadm kubelet kubectl kubernetes-cni containerd apt-transport-https ca-certificates curl gnupg nfs-common ipvsadm;
    ```
    
 7. Отключаем firewall
    ```bash
-   sudo ufw disable;
+   sudo ufw disable
    ```
    
 8. Настройка сети. Создаем/редактируем файл /etc/sysctl.d/99-kubernetes-cri.conf и добавляем в него
@@ -59,8 +55,7 @@
    
 9. Включение модулей
    ```bash
-   sudo modprobe overlay;
-   sudo modprobe br_netfilter;
+   sudo modprobe overlay && sudo modprobe br_netfilter
    ```
    
 10. Добавление модулей в загрузку. Создаем/редактируем файл **/etc/modules-load.d/containerd.conf** и добавляем в него строки
@@ -70,14 +65,18 @@
    ```
 11. Применяем настройки systemd
    ```bash
-   sudo sysctl --system;
+   sudo sysctl --system
    ```
 
 12. Включаем в containerd работу с cgroup
    ```bash
-   sudo mkdir /etc/containerd;
-   containerd config default | sudo tee /etc/containerd/config.toml;
-   sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml;
+   sudo mkdir /etc/containerd
+   ```
+   ```bash
+   containerd config default | sudo tee /etc/containerd/config.toml
+   ```
+   ```bash
+   sudo sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
    ```
 
 13. Добавляем настройки для crictl. Создаем/редактируем файл /etc/crictl.yaml, добавляем в него строки
@@ -92,8 +91,7 @@
 
 14. Перезапускаем службы
    ```bash
-   sudo service containerd restart;
-   sudo service kubelet restart;
+   sudo service containerd restart && sudo service kubelet restart
    ```
 
 [[Перейти в начало](../../README.md)]

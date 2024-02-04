@@ -18,13 +18,13 @@ kubeadm token list
  
    *Для Contrl Plane*
    ```bash
-      kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
+   sudo kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
         --discovery-token-ca-cert-hash sha256:e11c1247d93f672d0132dac847522870b77c7a30d19bff6a88fb09242837cc56 \
         --control-plane
    ```
    *Для остальных узлов*   
    ```bash
-    kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
+   sudo kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
         --discovery-token-ca-cert-hash sha256:e11c1247d93f672d0132dac847522870b77c7a30d19bff6a88fb09242837cc56
    ```
    
@@ -38,7 +38,7 @@ kubeadm token list
 
 Когда время токена истекает, соответственно команда для добавления узла перестает работать, но это не проблема, 
 все что нам нужно - получить команду вида:
-```
+```bash
 sudo kubeadm join PATH --token TOKEN \
   --discovery-token-ca-cert-hash sha256:CA_HASH \
   --certificate-key CA_KEY \
@@ -90,7 +90,7 @@ sudo kubeadm join 192.168.1.12:7443 --token 755e5h.9mhg085l4gifma1p \
 ### Добавление узлов worker
 
 Надо получить команду вида:
-```
+```bash
 sudo kubeadm join PATH --token TOKEN \
   --discovery-token-ca-cert-hash sha256:CA_HASH 
 ```
@@ -131,11 +131,10 @@ sudo kubeadm join 192.168.1.12:7443 --token ta02xs.l69kmc5ypevxuiqo \
 ---
 *Если получили ошибку или добавили узел не с той ролью, необходимо запустить команду сброса, и снова добавить*
    ```bash
-   sudo kubeadm reset;
+   sudo kubeadm reset
    ```
    ```bash
-   sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X;
-   sudo ipvsadm --clear;
+   sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X && sudo ipvsadm --clear;
    ```
 ---
 

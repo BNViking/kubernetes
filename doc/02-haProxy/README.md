@@ -9,8 +9,8 @@
 Для того что бы иметь множество узлов Control Plane, необходимо создать балансировщика, который будет распределять трафик по узлам API Kubernetes
 
 1. Установка haProxy (можно установить на 1 узел control-01.lan, так как у нас тестовый стенд)
-   ```
-   sudo apt install haproxy;
+   ```bash
+   sudo apt install haproxy
    ```
 2. Редактируем файл с настройкой haProxy, в итоге получаем [/etc/haproxy/haproxy.cfg](./config/haproxy.cfg)
 
@@ -39,9 +39,7 @@
    
 4. Запускаем haProxy
    ```bash
-   sudo systemctl enable haproxy;
-   sudo systemctl restart haproxy;
-   sudo systemctl status haproxy;
+   sudo systemctl enable haproxy && sudo systemctl restart haproxy && sudo systemctl status haproxy
    ```
 
 Можно перейти по адресу http://192.168.1.12:9000/haproxy или http://control-01.lan:9000/haproxy и увидеть статистику

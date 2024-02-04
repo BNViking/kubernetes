@@ -69,10 +69,8 @@
        ```
        /etc/resolv.conf
        ```       
-4. Заменяем порты для health 8080 на 9254, так как в DaemonSet параметр `spec.hostNetwork: true`, это значит что приложение будет использовать порты узла.\
-   *(На мой взгляд 8080 не должен быть использован в качестве health)*
 
-5. После всех изменений применяем файл [01-config-node-local-dns.yaml](./01-config-node-local-dns.yaml)
+4. После всех изменений применяем файл [01-config-node-local-dns.yaml](./01-config-node-local-dns.yaml)
     ```bash
     kubectl apply -f ./01-config-node-local-dns.yaml
     ```

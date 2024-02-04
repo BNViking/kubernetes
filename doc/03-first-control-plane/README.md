@@ -17,7 +17,7 @@ kubeadm config print init-defaults
 ### Разворачивание первого узла с ролью Control Plane
 
 1. Создаем файл с конфигурацией 
-   ```
+   ```bash
    touch ./kube-init.yaml
    ```
 2. Пример файла [kube-init.yaml](./kube-init.yaml) с конфигурацией
@@ -88,7 +88,7 @@ kubeadm config print init-defaults
    ```
 3. Запускаем команду инициализации kubernetes
    ```bash
-   sudo kubeadm init --config ./kube-init.yaml;
+   sudo kubeadm init --config ./kube-init.yaml
    ```
 
    *Если получили ошибку, необходимо запустить команду сброса, перед новой установкой узла*
@@ -96,27 +96,25 @@ kubeadm config print init-defaults
    sudo kubeadm reset;
    ```
    ```bash
-   sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X;
-   sudo ipvsadm --clear;
+   sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F && sudo iptables -X && sudo ipvsadm --clear
    ```
 
 4. Копируем настройки для подключения kubectl
-   ```
+   ```bash
    mkdir -p $HOME/.kube;
    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config;
    sudo chown $(id -u):$(id -g) $HOME/.kube/config;
    ```
-6. После установки будет предложено подключить дополнительные узлы
- 
+5. После установки будет предложено подключить дополнительные узлы
    *Для Contrl Plane*
    ```bash
-   kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
+   sudo kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
         --discovery-token-ca-cert-hash sha256:e11c1247d93f672d0132dac847522870b77c7a30d19bff6a88fb09242837cc56 \
         --control-plane
    ```
    *Для остальных узлов*   
-   ```
-   kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
+   ```bash
+   sudo kubeadm join 192.168.1.12:7443 --token abcdef.0123456789abcdef \
         --discovery-token-ca-cert-hash sha256:e11c1247d93f672d0132dac847522870b77c7a30d19bff6a88fb09242837cc56
    ```
    
@@ -127,9 +125,9 @@ kubeadm config print init-defaults
 Kubernetes предложит [установить дополнения](https://kubernetes.io/docs/concepts/cluster-administration/addons/), но это мы сделаем попозже =)
 
 Проверяем вывод информации о подключенных узла
-```bash
-kubectl get nodes -o wide
-```
+   ```bash
+   kubectl get nodes -o wide
+   ```
 Получаем ответ
 
 ```
