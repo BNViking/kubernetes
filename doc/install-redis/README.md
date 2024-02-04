@@ -19,6 +19,16 @@
    helm repo update
    ```
 
+4. Создадим namespace
+   ```bash
+   kubectl create namespace redis
+   ```
+
+5. Создадим секрет с паролем
+   ```bash
+   kubectl create secret generic redis-password -n redis --from-literal=password=redispassword
+   ```
+
 3. Создаем файл [./00-redis-values.yaml](./00-redis-values.yaml) с настройками
    ```bash
    helm show values bitnami/redis > ./00-redis-values.yaml
@@ -28,23 +38,13 @@
    ```yaml
    global:
       storageClass: "nfs-bnvkube-client"
-   master:
-      containerSecurityContext:
-         runAsUser: 1001
-         runAsGroup: 1001
-   replica:
-      containerSecurityContext:
-         runAsUser: 1001
-         runAsGroup: 1001
    architecture: standalone
    auth:
       enabled: true
-      password: "redispassword"
+      existingSecret: "redis-password"
+      existingSecretPasswordKey: "password"
    metrics:
       enabled: true
-      containerSecurityContext:
-         runAsUser: 1001
-         runAsGroup: 1001
    ```
 
 5. Устанавливаем
