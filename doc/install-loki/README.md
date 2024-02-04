@@ -88,7 +88,7 @@ Grafana Loki — это набор компонентов, которые мог
 
 5. Устанавливаем
     ```bash
-    helm install loki grafana/loki -f 00-loki-values.yaml --namespace logging
+    helm install loki grafana/loki -f 00-loki-values.yaml --namespace logging --create-namespace
     ```
 
 После установки, надо сделать 2 реплики для StateFullSet Loki\
