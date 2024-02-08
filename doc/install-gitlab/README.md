@@ -183,6 +183,133 @@ _Через настройки не применились значения, п�
             - registry.bnvkube.lan
           secretName: gitlab-registry-tls
     ```
+---
+
+### Настройка с предустановленным **minio**
+
+1. Создать секрет авторизации в minio для раздела **global.appConfig.{lfs,artifacts,uploads,packages}.connection**
+    ```bash
+    cat << EOF | kubectl apply -f - 
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: appconfig-minio-credentials
+      namespace: gitlab
+      labels:
+        manual: "yes"
+    type: Opaque
+    stringData:
+      connection: |
+        provider: AWS
+        region: ru-nsk-1 #Обязательно укажите свой регион
+        endpoint: http://minio-headless.minio:9000
+        path_style: true
+        aws_access_key_id: "ACCESS_KEY" 
+        aws_secret_access_key: "SECRET_KEY"
+    EOF
+    ```
+
+2. Создать секрет авторизации в minio для раздела **gitlab.toolbox.backups.objectStorage.config**
+    ```bash
+    cat << EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: toolbox-minio-credentials
+      namespace: gitlab
+      labels:
+        manual: "yes"
+    type: Opaque
+    stringData:
+      config: |
+        s3:
+          bucket: gitlab-registry
+          accesskey: "ACCESS_KEY"
+          secretkey: "SECRET_KEY"
+          region: ru-nsk-1 #Обязательно укажите свой регион
+          regionendpoint: "http://minio-headless.minio:9000"
+          v4auth: true
+    EOF
+    ```
+
+3. Создаем **buckets** в minio
+    ```
+    gitlab-artifacts
+    gitlab-backups
+    gitlab-lfs
+    gitlab-packages
+    gitlab-registry
+    gitlab-tmp
+    gitlab-uploads
+    ```
+
+4. Редактируем настройки [./00-gitlab-values.yaml](./00-gitlab-values.yaml)
+    ```yaml
+    global:
+      minio:
+        enabled: false
+      appConfig:
+        lfs:
+          enabled: true
+          proxy_download: true
+          bucket: gitlab-lfs
+          connection:
+            secret: appconfig-minio-credentials
+            key: connection
+        artifacts:
+          enabled: true
+          proxy_download: true
+          bucket: gitlab-artifacts
+          connection:
+            secret: appconfig-minio-credentials
+            key: connection
+        uploads:
+          enabled: true
+          proxy_download: true
+          bucket: gitlab-uploads
+          connection:
+            secret: appconfig-minio-credentials
+            key: connection
+        packages:
+          enabled: true
+          proxy_download: true
+          bucket: gitlab-packages
+          connection:
+            secret: appconfig-minio-credentials
+            key: connection
+      registry:
+        bucket: gitlab-registryz
+    gitlab:
+      toolbox:
+        backups:
+          objectStorage:
+            config:
+              secret: toolbox-minio-credentials
+              key: config
+    ```
+
+5. Устанавливаем
+   ```bash
+   helm upgrade --install gitlab gitlab/gitlab -f ./00-gitlab-values.yaml --namespace gitlab --create-namespace
+   ```
+
+6. После установки загрузка в **registry** не будет работать, исправляем конфигурацию **ConfigMaps.gitlab-registry**, меняем блок **data.storage**, заменяем **filesystem** на **s3**
+    ```yaml
+    data:
+      storage:
+        ...
+        s3:
+          accesskey: "ACCESS_KEY"
+          secretkey: "SECRET_KEY"
+          region: ru-nsk-1
+          regionendpoint: http://minio-headless.minio:9000
+          bucket: gitlab-registry
+          secure: true
+          v4auth: true
+          rootdirectory: /
+    ```
+
+7. Перезапускаем DaemonSet gitlab-registry
 
 ---
 
