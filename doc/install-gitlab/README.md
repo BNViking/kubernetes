@@ -132,6 +132,26 @@ _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4]
       install: false
     postgresql:
       install: false
+    registry:
+      enabled: true
+      ingress:
+        annotations:
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          cert-manager.io/cluster-issuer: self-signed
+          kubernetes.io/tls-acme: "true"
+        tls:
+          secretName: gitlab-registry-tls
+    minio:
+      persistence:
+        storageClass: nfs-bnvkube-client
+        size: 30Gi
+      ingress:
+        annotations:
+          nginx.ingress.kubernetes.io/ssl-redirect: "true"
+          cert-manager.io/cluster-issuer: self-signed
+          kubernetes.io/tls-acme: "true"
+        tls:
+          secretName: gitlab-minio-tls
     gitlab-runner:
       install: false
     gitlab:
@@ -143,45 +163,26 @@ _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4]
         antiAffinityLabels:
           matchLabels:
             app: gitaly
+      webservice:
+        enabled: true
+        ingress:
+          annotations:
+            nginx.ingress.kubernetes.io/ssl-redirect: "true"
+            cert-manager.io/cluster-issuer: self-signed
+            kubernetes.io/tls-acme: "true"
+          tls:
+            secretName: gitlab-webservice-tls
       gitaly:
         persistence:
           size: 30Gi
           storageClass: nfs-bnvkube-client
+      gitlab-shell:
+        enabled: true
     ```
 
 12. Устанавливаем
     ```bash
     helm upgrade --install gitlab gitlab/gitlab -f ./00-gitlab-values.yaml --namespace gitlab --create-namespace
-    ```
----
-
-#### Исправление конфигурации 
-
-_Через настройки не применились значения, поэтому правим после установки_
-
-1. **PersistentVolumeClaim gitlab-minio**, добавить **storageClassName** и изменить размер тома
-   ```yaml
-    spec:
-      storageClassName: nfs-bnvkube-client
-      resources:
-        requests:
-          storage: 20Gi
-    ```
-
-2. **Ingress gitlab-minio**, заменить **secretName**
-    ```yaml
-      tls:
-        - hosts:
-            - minio.bnvkube.lan
-          secretName: gitlab-minio-tls
-    ```
-
-3. **Ingress gitlab-registry**, заменить **secretName**
-    ```yaml
-      tls:
-        - hosts:
-            - registry.bnvkube.lan
-          secretName: gitlab-registry-tls
     ```
 ---
 
