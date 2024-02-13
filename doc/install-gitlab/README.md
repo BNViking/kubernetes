@@ -185,6 +185,35 @@ _Создать базу данных **gitlab** в **PostgreSql**_ ([PgAdmin 4]
     helm upgrade --install gitlab gitlab/gitlab -f ./00-gitlab-values.yaml --namespace gitlab --create-namespace
     ```
 ---
+### Использование gitlab registry без проверки сертификата
+
+* [Инструкция настройки реестра образов](https://github.com/containerd/cri/blob/master/docs/registry.md#configure-registry-tls-communication)
+
+Для отключения проверки сертификата необходимо добавить настройки containerd на всех узлах.
+
+1. Создаем папку
+   ```bash
+   mkdir -p /etc/containerd/certs.d/registry.webc.int
+   ```
+   
+2. Создаем файл `/etc/containerd/certs.d/registry.webc.int/hosts.toml`
+   ```yaml
+   server = "https://registry.webc.int"
+   
+   [host."https://registry.webc.int"]
+     skip_verify = true
+   ```
+
+3. Редактируем файл настроек `/etc/containerd/config.toml`
+   ```yaml
+   [plugins."io.containerd.grpc.v1.cri".registry]
+     config_path = "/etc/containerd/certs.d"
+   ```
+
+4. Перезапускаем containerd
+   ```bash
+   service containerd restart
+   ```
 
 ### Настройка с предустановленным **minio**
 
